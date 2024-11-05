@@ -27,20 +27,23 @@ class ArticleListItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            article.urlToImage.isNotEmpty
-                ? ClipRRect(
-              borderRadius: BorderRadius.circular(context.r(8)),
-              child: Image.network(
-                article.urlToImage,
-                width: context.w(60),
-                height: context.h(60),
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(Icons.image_not_supported);
-                },
-              ),
-            )
-                : Icon(Icons.image_not_supported),
+            Hero(
+              tag: 'articleImage_${article.url}',
+              child: article.urlToImage.isNotEmpty
+                  ? ClipRRect(
+                borderRadius: BorderRadius.circular(context.r(8)),
+                child: Image.network(
+                  article.urlToImage,
+                  width: context.w(60),
+                  height: context.h(60),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(Icons.image_not_supported);
+                  },
+                ),
+              )
+                  : Icon(Icons.image_not_supported),
+            ),
             SizedBox(width: context.w(10)),
             Expanded(
               child: Column(

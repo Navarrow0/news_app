@@ -19,11 +19,14 @@ class ArticleDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (article.urlToImage.isNotEmpty)
-              Image.network(
-                article.urlToImage,
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(Icons.image_not_supported);
-                },
+              Hero(
+                tag: 'articleImage_${article.url}',
+                child: Image.network(
+                  article.urlToImage,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(Icons.image_not_supported);
+                  },
+                ),
               ),
             SizedBox(height: 16.0),
             Text(
